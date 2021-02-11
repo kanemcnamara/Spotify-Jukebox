@@ -10,7 +10,7 @@ window.onload=function(){
 				url: 'https://api.spotify.com/v1/search?',
 				data: {
 					q: query,
-					type: 'track,artist',
+					type: 'track',
 					limit: '20',
 					market: 'AU'
 				},
