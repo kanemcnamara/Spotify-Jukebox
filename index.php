@@ -6,8 +6,8 @@
 	 
 	<meta name="viewport" content="width=device-width, initial-scale=0.9">
 
-	<script type="text/javascript" src="res/jquery-1.10.1.min.js"></script>
-	<script type="text/javascript" src="res/handlebars.min.js"></script>
+	<script type="text/javascript" src="res/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="res/js/handlebars.min-v4.7.6.js"></script>
 	<link rel="stylesheet" type="text/css" href="res/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="res/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="res/css/style.css">
@@ -110,8 +110,6 @@
   </script>
 	<!-- Results -->
 	<!-- Scripts -->
-	<script type="text/javascript" src="res/js/jquery-3.2.1.js"></script>
-	<script type="text/javascript" src="res/handlebars.min.js"></script>
 	<script type="text/javascript" src="res/js/auth.js"></script>
 	<script type="text/javascript" src="res/js/base.js"></script>
 	<script type="text/javascript" src="res/js/query.js"></script>
