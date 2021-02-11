@@ -1,3 +1,4 @@
+<html>
 <head>
 	<link rel="icon" href="res/img/icon.ico"> <!-- Link to .ico file -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -8,56 +9,25 @@
 
 	<script type="text/javascript" src="res/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="res/js/handlebars.min-v4.7.6.js"></script>
-	<link rel="stylesheet" type="text/css" href="res/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="res/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="res/css/style.css">
 	<link rel="stylesheet" type="text/css" href="res/css/base.css">
 
+
 	<style type="text/css">
-		body {
-			padding: 20px;
-		}
 
-		#search-form,
-		.form-control {
-			margin-bottom: 20px;
-		}
-
-		.cover {
-			width: 300px;
-			height: 300px;
-			display: inline-block;
-			background-size: cover;
-		}
-
-		.cover:hover {
-			cursor: pointer;
-		}
-
-		.cover.playing {
-			border: 5px solid #e45343;
-		}
-
-		body {
-			background-position: center;
-			background-attachment: scroll;
-			background-color: white;
-			background-size: cover;
-		}
-
-		img {
-			max-width: 100%;
-			height: auto;
-		}
 	</style>
 	<title>Song Request</title>
 </head>
 
 <body>
-	<!-- Content -->
 	<div class="container">
-		<div id="img" style="display: block; margin: auto; width: 20%; padding-top: 20px;">
-			<img src="res/img/spotify.png" alt="logo" style="text-align: center; max-width: 100%; height: auto;">
+	<div id="success-alert" class="alert alert-success" style="display:none;">
+  
+</div>
+<div id="danger-alert" class="alert alert-danger" style="display:none;">
+  
+  </div>
+		<div style="display: block; margin: auto;">
 			<h2 style="color: black; padding-top: 30px;">Song Request</h2>
 		</div>
 		<div style="text-align:center" id="login-button-container">
@@ -71,48 +41,44 @@
 					<input type="text" id="query" value="" class="form-control" placeholder="Song / Artist Name" style="text-align:center" />
 					<input type="submit" id="search" name="search" class="btn btn-success btn-lg" value="Search" />
 				</form>
-
-
 			</div>
 		</div>
 		<div style="padding-top: 30px" id="results"></div>
-
 	</div>
-	<!-- Content -->
-
-	<!-- Results -->
-	<script id="results-template" type="text/x-handlebars-template">
-		<div style="padding-top: 30px; padding-bottom: 20px" class="row">
-				<div class="col-sm-4" style="color:black; text-align:center; font-size: 150%; font-weight: bold;"> Track Name </div>
-				<div class="col-sm-4" style="color:black; text-align:center; font-size: 150%; font-weight: bold;"> Artist </div>
-				<div class="col-sm-4" style="color:black; text-align:center; font-size: 150%; font-weight: bold;"> Request </div>
-			</div>
+		<script id="results-template" type="text/x-handlebars-template">
+		<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Artwork</th>
+				<th scope="col">Name</th>
+				<th scope="col">Artist</th>
+				<th scope="col">Album</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
     {{#each tracks.items}}
-				<form name="submit_request" method="post" action="<?php echo $_POST['PHP_SELF']; ?>">
-					<input type="hidden" name="spotify_id" value="{{id}}">
-					<input type="hidden" name="spotify_uri" value="{{uri}}">
-					<input type="hidden" name="spotify_title" value="{{name}}">
-					<input type="hidden" name="spotify_artist" value="{{artists.0.name}}">
-					<input type="hidden" name="explicit" value="{{explicit}}">
-
+	<tr>
 					<div class="row">
-						<div class="col-sm-4" style="color:blck; font-size:120%;"> {{name}} </div>
-						<div class="col-sm-4" style="color:black; font-size:120%;"> {{artists.0.name}} </div>
-						<div class="col-sm-4" style="color:green;"> <input type="submit" class="btn btn-submit btn-sm" id="btn-request" name="btn-request" value="Request Song"> </div>
+						<td><img src="{{ album.images.2.url }}"></td>
+						<td>{{ name }}</td>
+						<td>{{ artists.0.name }}</td>
+						<td>{{ album.name }}</td>
+						<td><button class="btn btn-success btm-sm" style="    white-space:nowrap;
+    overflow:hidden;" onclick="addToQueue('{{ uri }}', ' {{ name }}' ,' {{ artists.0.name }} ')" >Add to Queue</button></td>
 					</div> 
-					
-				</form>
+	</tr>
 			{{/each}}
   </script>
-
 	<script id="no-results-template" type="text/x-handlebars-template">
 		nothing found!
   </script>
-	<!-- Results -->
-	<!-- Scripts -->
 	<script type="text/javascript" src="res/js/auth.js"></script>
-	<script type="text/javascript" src="res/js/base.js"></script>
 	<script type="text/javascript" src="res/js/query.js"></script>
+	<script type="text/javascript" src="res/js/base.js"></script>
+
+	<script>
+
+	</script>
 	<!-- Scripts -->
 </body>
 
