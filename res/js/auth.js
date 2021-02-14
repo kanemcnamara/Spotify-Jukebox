@@ -3,7 +3,7 @@ var AUTH = (function () {
   var accessToken = "";
   var authCode = "";
   var CLIENT_ID = "1d866aedaaa94d53bb7909d33c324bf4";
-  var REDIRECT_URI = "https://dev.request.kane.network/callback.html";
+  var REDIRECT_URI = "https://request.kane.network/callback.html";
   var checkVerifier = "";
 
   // Call Spotify to get auth Code
@@ -101,9 +101,12 @@ var AUTH = (function () {
 
   var getAccessToken = function () {
     var expires = 0 + localStorage.getItem("pa_expires", "0");
+    if (expires == 0)
+    {
+      return "";
+    }
     if (new Date().getTime() > expires) {
       requestRefreshToken();
-      
     }
     var token = localStorage.getItem("pa_token", "");
     return token;
@@ -130,6 +133,7 @@ var AUTH = (function () {
   var exchangeAuthCode = function (code) {
     $.ajax({
       method: 'POST',
+      crossDomain : true,
       url: 'https://accounts.spotify.com/api/token',
       data: {
         client_id: CLIENT_ID,
