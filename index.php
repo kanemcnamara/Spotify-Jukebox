@@ -28,7 +28,7 @@
   
   </div>
 		<div style="display: block; margin: auto;">
-			<h2 style="color: black; padding-top: 30px;">Song Request *DEV*</h2>
+			<h2 style="color: black; padding-top: 30px;">Song Request</h2>
 		</div>
 		<div style="text-align:center" id="login-button-container">
 			<button class="btn btn-primary" id="btn-login">Login</button>
