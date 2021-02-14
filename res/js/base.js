@@ -69,8 +69,10 @@ window.onload=function(){
       headers: {
         'Authorization': 'Bearer ' + AUTH.getAccessToken()},
       success: function (response) {
-        resultsPlaceholder.innerHTML = template(response);
-        
+        resultsPlaceholder.innerHTML = template(response); 
+      },
+      error: function (xhr, status, error) {
+        alert(xhr.responseText);
       }
     });
     $('#success-alert').hide();

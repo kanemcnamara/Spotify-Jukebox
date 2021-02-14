@@ -3,10 +3,10 @@
 <script>
 
 function init() {
-	console.log('hash', location.hash);
+	console.log('hash', location.search);
 
 	var hash = {};
-	location.hash.replace(/^#\/?/, '').split('&').forEach(function(kv) {
+	location.search.replace(/^\?\/?/, '').split('&').forEach(function(kv) {
 		var spl = kv.indexOf('=');
 		if (spl != -1) {
 			hash[kv.substring(0, spl)] = decodeURIComponent(kv.substring(spl+1));
@@ -15,10 +15,10 @@ function init() {
 
 	console.log('initial hash', hash);
 
-	if (hash.access_token) {
+	if (hash.code) {
 		window.opener.postMessage(JSON.stringify({
 			type:'access_token',
-			access_token: hash.access_token,
+			access_token: hash.code,
 			expires_in: hash.expires_in || 0
 		}), '*');
 
