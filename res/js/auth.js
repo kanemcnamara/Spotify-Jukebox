@@ -101,7 +101,7 @@ var AUTH = (function () {
 
   var getAccessToken = function () {
     var expires = 0 + localStorage.getItem("pa_expires", "0");
-    if (expires == 0)
+    if (expires == 0 || (localStorage.getItem("pa_refresh") === null))
     {
       return "";
     }
