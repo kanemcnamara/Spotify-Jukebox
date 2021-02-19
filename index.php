@@ -74,10 +74,6 @@
   </script>
 	<script type="text/javascript" src="res/js/auth.js"></script>
 	<script type="text/javascript" src="res/js/base.js"></script>
-
-	<script>
-
-	</script>
 	<!-- Scripts -->
 </body>
 
