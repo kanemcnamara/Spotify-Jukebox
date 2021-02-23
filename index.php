@@ -4,25 +4,21 @@
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
-	 
 	<meta name="viewport" content="width=device-width, initial-scale=0.9">
-
 	<script type="text/javascript" src="res/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="res/js/handlebars.min-v4.7.6.js"></script>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css">
 	<link rel="stylesheet" type="text/css" href="res/css/base.css">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-wed-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width">
 
-
-	<style type="text/css">
-
-	</style>
 	<title>Song Request</title>
 </head>
 
 <body>
 	<div class="container">
-	<div id="success-alert" class="alert alert-success" style="display:none;">
-  
+	<div id="success-alert" class="alert alert-success" style="display:none;" >
 </div>
 <div id="danger-alert" class="alert alert-danger" style="display:none;">
   
@@ -72,8 +68,8 @@
 	<script id="no-results-template" type="text/x-handlebars-template">
 		nothing found!
   </script>
-	<script type="text/javascript" src="res/js/auth.js"></script>
-	<script type="text/javascript" src="res/js/base.js"></script>
+	<script type="text/javascript" src="res/js/auth.js?0.1"></script>
+	<script type="text/javascript" src="res/js/base.js?0.1"></script>
 	<!-- Scripts -->
 </body>
 

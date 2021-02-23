@@ -123,7 +123,7 @@ var AUTH = (function () {
 
 
   var isLoggedin = function () {
-    return await getAccessToken() !== "";
+    return getAccessToken() !== "";
   };
 
   var setAuthCode = function(code){
