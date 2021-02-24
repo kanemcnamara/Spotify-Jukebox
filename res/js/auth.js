@@ -115,14 +115,17 @@ var AUTH = (function () {
     );
   };
 
-
-
   var getAccessToken = function () {
-    var expires = 0 + localStorage.getItem("pa_expires", "0");
+    var expires = parseInt(localStorage.getItem("pa_expires", "0"));
+    if (isNaN(expires)){
+      expires = 0;
+    };
+    
     if (expires == 0 || (localStorage.getItem("pa_refresh") === null))
     {
       return "";
     }
+
     if (new Date().getTime() > expires) {
       requestRefreshToken();
     }
@@ -132,7 +135,7 @@ var AUTH = (function () {
 
   var setAccessRefreshToken = function (response) {
     var expiresDate = new Date();
-    expiresDate.setTime(expiresDate.getTime() + 1000 * response.expires_in);
+    expiresDate.setTime(expiresDate.getTime() + 1000 * response.expires_in / 2);
 
     localStorage.setItem("pa_token", response.access_token);
     localStorage.setItem("pa_expires", expiresDate.getTime());
