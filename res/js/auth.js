@@ -82,7 +82,25 @@ var AUTH = (function () {
       left = screen.width / 2 - width / 2,
       top = screen.height / 2 - height / 2;
 
-      var loginUrl = await getLoginURL();
+      var loginUrl = getLoginURL();
+
+
+      const win = window.open('about:blank',
+      "Spotify",
+      "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
+        width +
+        ", height=" +
+        height +
+        ", top=" +
+        top +
+        ", left=" +
+        left);
+
+      getLoginURL().then(url => {
+        win.location = url;
+      }).catch(url => {
+        win.location = 'https://dev.request.kane.network';
+      });
     w = window.open(
       loginUrl,
       "Spotify",
