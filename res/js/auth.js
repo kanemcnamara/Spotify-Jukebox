@@ -97,9 +97,9 @@ var AUTH = (function () {
         left);
 
       getLoginURL().then(url => {
-        win.location = url;
+        win.location.href = url;
       }).catch(url => {
-        win.location = 'https://dev.request.kane.network';
+        win.location.href = 'https://request.kane.network';
       });
     w = window.open(
       loginUrl,
