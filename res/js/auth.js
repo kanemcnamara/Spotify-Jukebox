@@ -82,9 +82,6 @@ var AUTH = (function () {
       left = screen.width / 2 - width / 2,
       top = screen.height / 2 - height / 2;
 
-      var loginUrl = getLoginURL();
-
-
       const win = window.open('about:blank',
       "Spotify",
       "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
@@ -101,18 +98,6 @@ var AUTH = (function () {
       }).catch(url => {
         win.location.href = 'https://request.kane.network';
       });
-    w = window.open(
-      loginUrl,
-      "Spotify",
-      "menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=" +
-        width +
-        ", height=" +
-        height +
-        ", top=" +
-        top +
-        ", left=" +
-        left
-    );
   };
 
   var getAccessToken = function () {
