@@ -87,3 +87,6 @@ window.onload=function(){
   }, false);
 
   }
+  // function to check is token is due to expire and if so refresh it. runs every 10 minutes
+  const refreshMin = 10;
+  window.setInterval(function(){ AUTH.getAccessToken(); }, refreshMin*60000);
