@@ -27,6 +27,10 @@ var AUTH = (function () {
     async function sha256(plain) { // returns promise ArrayBuffer
       const encoder = new TextEncoder();
       const data = encoder.encode(plain);
+      if (window.crypto && !window.crypto.subtle && window.crypto.webkitSubtle) {
+        window.crypto.subtle = window.crypto.webkitSubtle;
+    }
+    
       return window.crypto.subtle.digest('SHA-256', data);
     }
     
