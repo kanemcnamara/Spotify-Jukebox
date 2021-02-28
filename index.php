@@ -1,6 +1,6 @@
 <html>
 <head>
-	<link rel="icon" href="res/img/icon.ico"> <!-- Link to .ico file -->
+	<link rel="icon" href="res/img/kane.network.ico"> <!-- Link to .ico file -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
