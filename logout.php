@@ -4,6 +4,6 @@
 </head>
 <script type="text/javascript">
     localStorage.clear();
-    window.location.replace("https://dev.request.kane.network");
+    window.location.replace("https://request.kane.network");
 </script>
 </html>
