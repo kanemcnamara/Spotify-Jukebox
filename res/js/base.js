@@ -28,11 +28,11 @@ var initLogin = function() {
 var addToQueue = function(spotify_uri, title, artist){
   $.ajax({
     method: 'POST',
-    url: 'https://api.spotify.com/v1/me/player/queue?uri='+spotify_uri,
+    url: "https://api.spotify.com/v1/me/player/queue?uri="+spotify_uri,
     headers: {
       'Authorization': 'Bearer ' + AUTH.getAccessToken()},
     success: function (response) {
-      $('#success-alert').html(title + ' - ' + artist + ' has been added to the queue.');
+      $('#success-alert').html(title + " - " + artist + " has been added to the queue.");
       $('#success-alert').show();
       $('#results').hide();
       $('#query').val("");

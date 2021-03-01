@@ -60,7 +60,7 @@
 						<td>{{ artists.0.name }}</td>
 						<td>{{ album.name }}</td>
 						<td><button class="btn btn-success btm-sm" style="    white-space:nowrap;
-    overflow:hidden;" onclick="addToQueue('{{ uri }}', ' {{ name }}' ,' {{ artists.0.name }} ')" >Add to Queue</button></td>
+    overflow:hidden;" onclick="addToQueue(`{{ uri }}`,`{{ name }}`,`{{ artists.0.name }}`)" >Add to Queue</button></td>
 					</div> 
 	</tr>
 			{{/each}}
