@@ -84,7 +84,7 @@ window.onload=function(){
   document.getElementById('search-form').addEventListener('submit', function (e) {
     e.preventDefault();
     searchTracks(document.getElementById('query').value);
-    document.getElementById('query').inputMode = "none";
+    document.activeElement.blur();
   }, false);
 
   }
