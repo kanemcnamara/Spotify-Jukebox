@@ -68,8 +68,8 @@
 	<script id="no-results-template" type="text/x-handlebars-template">
 		nothing found!
   </script>
-	<script type="text/javascript" src="res/js/auth.js?0.2"></script>
-	<script type="text/javascript" src="res/js/base.js?0.2"></script>
+	<script type="text/javascript" src="res/js/auth.js?0.21"></script>
+	<script type="text/javascript" src="res/js/base.js?0.21"></script>
 	<!-- Scripts -->
 </body>
 
