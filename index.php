@@ -5,7 +5,7 @@
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="googlebot" content="noindex, nofollow">
 	<meta name="viewport" content="width=device-width, initial-scale=0.9">
-	<script type="text/javascript" src="res/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript" src="res/js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="res/js/handlebars.min-v4.7.7.js"></script>
 	<link rel="stylesheet" type="text/css" href="res/css/style.css">
 	<link rel="stylesheet" type="text/css" href="res/css/base.css">
