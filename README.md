@@ -10,3 +10,5 @@ cover in a simple, tablet/phone friendly webpage such as can be
 used in a 'Jukebox' Scenario.
 
 If you have any requests open an issue or contact me at kane@wattleit.com.au
+
+Use the demo at request.kane.network freely :) 
