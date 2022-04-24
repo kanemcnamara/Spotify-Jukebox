@@ -11,4 +11,4 @@ used in a 'Jukebox' Scenario.
 
 If you have any requests open an issue or contact me at kane@wattleit.com.au
 
-Use the demo at request.kane.network freely :) 
+Use the demo at https://request.kane.network freely :) 
