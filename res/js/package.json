@@ -1,0 +1,8 @@
+{
+    "name":"spotifyjukebox",
+    "version":"0.0.3",
+    "dependencies": {
+      "handlebars": "4.7.7",
+      "jquery": "3.6.0"
+    }
+  }
