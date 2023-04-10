@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<link rel="icon" href="res/img/kane.network.ico"> <!-- Link to .ico file -->
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -18,11 +19,11 @@
 
 <body>
 	<div class="container">
-	<div id="success-alert" class="alert alert-success" style="display:none;" >
-</div>
-<div id="danger-alert" class="alert alert-danger" style="display:none;">
-  
-  </div>
+		<div id="success-alert" class="alert alert-success" style="display:none;">
+		</div>
+		<div id="danger-alert" class="alert alert-danger" style="display:none;">
+
+		</div>
 		<div style="display: block; margin: auto;">
 			<h2 style="color: black; padding-top: 30px;">Song Request</h2>
 		</div>
@@ -41,7 +42,29 @@
 		</div>
 		<div style="padding-top: 30px" id="results"></div>
 	</div>
-		<script id="results-template" type="text/x-handlebars-template">
+	<div class="footer">
+		<table style="width:100%; padding-bottom:10px;">
+			<tr style="text-align:center; margin-bottom:10px;">
+				<td style="width:50%">Currently Playing
+					<table style="width:100%;">
+						<tr>
+							<td style="padding: 0;" id="currently-playing-artwork"></td>
+							<td id="currently-playing-track"></td>
+						</tr>
+					</table>
+				</td>
+				<td style="width:50%">Up Next
+				<table style="width:100%;">
+						<tr>
+							<td id="next-playing-artwork"></td>
+							<td id="next-playing-track"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script id="results-template" type="text/x-handlebars-template">
 		<table class="table">
 		<thead>
 			<tr>

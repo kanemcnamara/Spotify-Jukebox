@@ -1,0 +1,148 @@
+form,
+.form-control {
+    margin-bottom: 20px;
+}
+
+#overview {
+    position: absolute;
+    top: 0%;
+    text-align: center;
+    height: 100%;
+    color: white;
+}
+
+#upcoming-tracks {
+   /* background-color: rgba(0, 0, 0, 0.4); */
+    /* Black w/opacity/see-through */
+    width: 100%;
+    position: fixed;
+    top: 50%;
+
+}
+
+.upcoming-artwork{
+    margin:10%;
+    width: 50%;
+}
+
+#currently-playing{
+    height:50%;
+    width: 100%;
+    position: fixed;
+}
+
+#currently-playing-artwork{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#currently-playing-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.bg {
+    /* Add the blur effect */
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn {
+    font-size: 16px;
+}
+
+#clear-history {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.last-search-entry {
+    cursor: pointer;
+}
+
+.last-search-entry>span:not(:first-child) {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.cover {
+    width: 300px;
+    height: 300px;
+    /*display: inline-block;*/
+    background-size: cover;
+}
+
+.box {
+    width: 300px;
+    margin: 20px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.newBox {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background-color: #C74C4C;
+    width: 50px;
+    height: 35px;
+    top: -15px;
+    left: -15px;
+    position: relative;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 36px;
+}
+
+.cover:hover {
+    cursor: pointer;
+}
+
+.cover.playing {
+    border: 5px solid #e45343;
+}
+
+#file-upload-container {
+    display: none;
+}
+
+#url-upload-container {
+    display: none;
+}
+
+.btn+.btn {
+    margin-left: 0px !important;
+}
+
+.btn {
+    margin-top: 10px;
+}
+
+#login-button-container {
+    display: none;
+}
+
+#toggle {
+    display: none;
+}
+
+.footer {
+    position: fixed;
+    height: 100px;
+    background-color: rgb(196, 196, 196);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+}

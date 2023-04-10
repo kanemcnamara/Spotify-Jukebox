@@ -1,5 +1,6 @@
 body {
     padding: 20px;
+    margin-bottom: 100px;
 }
 form, .form-control {
     margin-bottom: 20px;
@@ -86,4 +87,14 @@ form, .form-control {
 
 #toggle {
   display:none;
+}
+
+.footer {
+    position: fixed;
+    height: 100px;
+    background-color: rgb(196, 196, 196);
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
 }
