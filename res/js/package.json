@@ -2,7 +2,7 @@
     "name":"spotifyjukebox",
     "version":"0.0.3",
     "dependencies": {
-      "handlebars": "4.7.7",
+      "handlebars": "4.7.9",
       "jquery": "3.6.0"
     }
   }
