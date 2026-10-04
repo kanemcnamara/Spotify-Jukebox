@@ -68,9 +68,17 @@ var AUTH = (function () {
     window.addEventListener(
       "message",
       function (event) {
-        var hash = JSON.parse(event.data);
-        if (hash.type == "access_token") {
-         // setAccessToken(hash.access_token, hash.expires_in || 60);
+        // Only trust messages from our own origin (the callback popup).
+        if (event.origin !== window.location.origin) {
+          return;
+        }
+        var hash;
+        try {
+          hash = JSON.parse(event.data);
+        } catch (e) {
+          return; // ignore non-JSON messages (extensions, other libs, etc.)
+        }
+        if (hash && hash.type == "access_token") {
           setAuthCode(hash.access_token);
           exchangeAuthCode(hash.access_token);
           if (successCallback) {
@@ -128,7 +136,11 @@ var AUTH = (function () {
 
     localStorage.setItem("pa_token", response.access_token);
     localStorage.setItem("pa_expires", expiresDate.getTime());
-    localStorage.setItem("pa_refresh",response.refresh_token)
+    // Spotify omits refresh_token on refresh responses; only overwrite when
+    // one is actually returned, otherwise we'd clobber the stored token.
+    if (response.refresh_token) {
+      localStorage.setItem("pa_refresh", response.refresh_token);
+    }
   };
 
 
@@ -161,9 +173,12 @@ var AUTH = (function () {
     });
   };
 
-  var requestRefreshToken = function (code) {
+  var requestRefreshToken = function () {
+    // Synchronous so the caller (getAccessToken) can return the freshly
+    // stored token instead of the expired one it was about to hand back.
     $.ajax({
       method: 'POST',
+      async: false,
       url: 'https://accounts.spotify.com/api/token',
       data: {
         client_id: CLIENT_ID,

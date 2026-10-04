@@ -20,7 +20,7 @@ function init() {
 			type:'access_token',
 			access_token: hash.code,
 			expires_in: hash.expires_in || 0
-		}), '*');
+		}), window.location.origin);
 
 		window.close();
 	}

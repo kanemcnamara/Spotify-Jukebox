@@ -1,148 +1,261 @@
-form,
-.form-control {
-    margin-bottom: 20px;
+:root {
+    --accent: #1db954;
+    --accent-hover: #1ed760;
 }
 
-#overview {
-    position: absolute;
-    top: 0%;
-    text-align: center;
+html,
+body {
     height: 100%;
-    color: white;
 }
 
-#upcoming-tracks {
-   /* background-color: rgba(0, 0, 0, 0.4); */
-    /* Black w/opacity/see-through */
-    width: 100%;
-    position: fixed;
-    top: 50%;
-
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #121212;
+    color: #fff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-.upcoming-artwork{
-    margin:10%;
-    width: 50%;
-}
-
-#currently-playing{
-    height:50%;
-    width: 100%;
-    position: fixed;
-}
-
-#currently-playing-artwork{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#currently-playing-details{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+/* ---------- Ambient blurred background ---------- */
 .bg {
-    /* Add the blur effect */
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
-
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
+    position: fixed;
+    inset: 0;
+    z-index: 0;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    filter: blur(28px) brightness(0.5);
+    transform: scale(1.12);
 }
 
-.btn {
-    font-size: 16px;
+.bg.bg-enter {
+    animation: bgEnter 0.7s ease;
 }
 
-#clear-history {
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-.last-search-entry {
-    cursor: pointer;
-}
-
-.last-search-entry>span:not(:first-child) {
-    display: inline-block;
-    margin-left: 10px;
-}
-
-.cover {
-    width: 300px;
-    height: 300px;
-    /*display: inline-block;*/
-    background-size: cover;
-}
-
-.box {
-    width: 300px;
-    margin: 20px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.newBox {
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
-    background-color: #C74C4C;
-    width: 50px;
-    height: 35px;
-    top: -15px;
-    left: -15px;
-    position: relative;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 36px;
-}
-
-.cover:hover {
-    cursor: pointer;
-}
-
-.cover.playing {
-    border: 5px solid #e45343;
-}
-
-#file-upload-container {
-    display: none;
-}
-
-#url-upload-container {
-    display: none;
-}
-
-.btn+.btn {
-    margin-left: 0px !important;
-}
-
-.btn {
-    margin-top: 10px;
-}
-
-#login-button-container {
-    display: none;
-}
-
-#toggle {
-    display: none;
-}
-
-.footer {
+/* ---------- Foreground overview ---------- */
+#overview {
     position: fixed;
-    height: 100px;
-    background-color: rgb(196, 196, 196);
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    margin-bottom: 0px;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 4vh 4vw calc(4vh + env(safe-area-inset-bottom));
+    text-align: center;
+    color: #fff;
+    height: auto;
+    width: auto;
+}
+
+/* Now playing (fills the space above the "Coming Up" strip) */
+#currently-playing {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    margin: 0;
+    min-height: 0;
+    position: static;
+    height: auto;
+    width: auto;
+}
+
+#currently-playing-artwork,
+#currently-playing-details {
+    display: flex;
+    flex: 0 1 auto;
+    max-width: 46vw;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+#currently-playing-details {
+    flex-direction: column;
+    text-align: left;
+    min-width: 0;
+}
+
+.cp-art {
+    width: min(40vh, 42vw);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+    animation: fgIn 0.6s ease;
+}
+
+.cp-title {
+    font-size: clamp(28px, 4vw, 64px);
+    font-weight: 700;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    animation: fgIn 0.6s ease;
+    overflow-wrap: anywhere;
+}
+
+.cp-artist {
+    font-size: clamp(18px, 2.4vw, 34px);
+    font-weight: 500;
+    color: #e6e6e6;
+    margin-bottom: 8px;
+    animation: fgIn 0.6s 0.05s both;
+}
+
+.cp-album {
+    font-size: clamp(14px, 1.6vw, 22px);
+    color: #9a9a9a;
+    animation: fgIn 0.6s 0.1s both;
+}
+
+/* Coming up strip */
+#upcoming-tracks {
+    flex: 0 0 auto;
+    position: static;
+    top: auto;
+    width: auto;
+}
+
+#upcoming-tracks h3 {
+    margin: 0 0 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+#upcoming-tracks .row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 2vw;
+    margin: 0;
+}
+
+#upcoming-tracks .col {
+    flex: 1 1 0;
+    max-width: 170px;
+    min-width: 0;
+    padding: 0;
+    animation: fgIn 0.5s ease;
+}
+
+.upcoming-artwork {
+    display: block;
+    width: 100%;
+    max-width: 140px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0 auto 8px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+#upcoming-tracks h4 {
+    margin: 0 0 2px;
+    font-size: clamp(12px, 1.1vw, 16px);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#upcoming-tracks h5 {
+    margin: 0;
+    font-size: clamp(11px, 1vw, 14px);
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- Login screen ---------- */
+#login-button-container {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #1e1e1e 0%, #121212 60%);
+}
+
+.login-inner {
+    text-align: center;
+}
+
+.login-title {
+    margin: 0 0 24px;
+    color: #fff;
+    font-size: clamp(24px, 3.5vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+#login-button-container .btn-primary {
+    background: var(--accent) !important;
+    border: none !important;
+    border-radius: 999px !important;
+    padding: 14px 34px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    box-shadow: 0 6px 18px rgba(29, 185, 84, 0.3) !important;
+}
+
+#login-button-container .btn-primary:hover {
+    background: var(--accent-hover) !important;
+}
+
+/* ---------- Animations ---------- */
+@keyframes bgEnter {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fgIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-aspect-ratio: 1 / 1) {
+    #currently-playing {
+        flex-direction: column;
+        gap: 3vh;
+    }
+
+    #currently-playing-artwork,
+    #currently-playing-details {
+        max-width: 90vw;
+        text-align: center;
+    }
+
+    #currently-playing-details {
+        text-align: center;
+    }
+
+    .cp-art {
+        width: min(58vw, 40vh);
+    }
+}
+
+@media (max-width: 600px) {
+    #upcoming-tracks .row {
+        flex-wrap: wrap;
+    }
+
+    #upcoming-tracks .col {
+        flex: 0 0 28%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
 }

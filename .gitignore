@@ -1,0 +1,27 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+
+# Logs & temp
+*.log
+*.tmp
+*.bak
+
+# Env / secrets (should never be committed)
+.env
+.env.*
+*.local
+
+# Dependency installs (this project vendors its libs in res/js;
+# node_modules should never appear, but ignore it defensively)
+node_modules/

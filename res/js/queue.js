@@ -12,23 +12,40 @@ var
   currentlyPlayingTemplateSource = document.getElementById('currently-playing-template').innerHTML,
   currentlyPlayingTemplate = Handlebars.compile(currentlyPlayingTemplateSource),
   currentlyPlayingPlaceholder = document.getElementById('currently-playing-details'),
-  lastUpdate = null;
-  lastQueue = null;
+  overviewBg = document.getElementById('overview-bg'),
+  lastRender = null;
 
 var initLogin = function () {
-  if (AUTH.isLoggedin()) {} else {
-    $("#logged-in-content-container").hide();
+  if (AUTH.isLoggedin()) {
+    $("#login-button-container").hide();
+    $("#overview").show();
+  } else {
+    $("#overview").hide();
     $("#login-button-container").show();
     $("#btn-login").click(function () {
       AUTH.login(function () {
         $("#login-button-container").hide();
-        $("#logged-in-content-container").show();
-      })
+        $("#overview").show();
+        fetchQueue();
+      });
     });
   }
-}
+};
+
+// Stable identity of a queue response: the currently-playing track plus the
+// ordered list of queued track URIs. Comparing this string (instead of the
+// array reference, which is always new) is what actually detects a change.
+var queueSignature = function (response) {
+  var playing = response.currently_playing ? response.currently_playing.uri : "";
+  var queue = (response.queue || []).map(function (track) { return track.uri; });
+  return playing + "|" + queue.join(",");
+};
 
 var fetchQueue = function () {
+  // Don't poll while logged out — otherwise every request 401s on a kiosk.
+  if (!AUTH.isLoggedin()) {
+    return;
+  }
   $.ajax({
     method: 'GET',
     url: "https://api.spotify.com/v1/me/player/queue",
@@ -36,33 +53,39 @@ var fetchQueue = function () {
       'Authorization': 'Bearer ' + AUTH.getAccessToken()
     },
     success: function (response) {
-      if (response.currently_playing != null) {
-        if (response.currently_playing.name != lastUpdate) {
-          resultsPlaceholder.innerHTML = template(response);
-          lastUpdate = response.currently_playing.name;
-          artworkPlaceholder.innerHTML = artworkTemplate(response);
-          document.getElementById('overview-bg').style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('"+response.currently_playing.album.images[0].url+"')";
-          currentlyPlayingPlaceholder.innerHTML = currentlyPlayingTemplate(response);
-          lastQueue = response.queue;
-        }
-        if (response.queue != lastQueue) {
-          console.log("Queue Updated.");
-          resultsPlaceholder.innerHTML = template(response);
-          lastQueue = response.queue;
-          artworkPlaceholder.innerHTML = artworkTemplate(response);
-          document.getElementById('overview-bg').style.backgroundImage = "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('"+response.currently_playing.album.images[0].url+"')";
-          currentlyPlayingPlaceholder.innerHTML = currentlyPlayingTemplate(response);
+      if (response.currently_playing == null) {
+        return;
       }
+
+      // Only re-render when something actually changed.
+      var signature = queueSignature(response);
+      if (signature === lastRender) {
+        return;
+      }
+      lastRender = signature;
+
+      response.upcoming = (response.queue || []).slice(0, 5);
+
+      resultsPlaceholder.innerHTML = template(response);
+      artworkPlaceholder.innerHTML = artworkTemplate(response);
+      currentlyPlayingPlaceholder.innerHTML = currentlyPlayingTemplate(response);
+
+      var art = response.currently_playing.album.images[0];
+      if (art) {
+        // encodeURI + quoting keeps the URL from breaking out of url("...").
+        overviewBg.style.backgroundImage = "url(\"" + encodeURI(art.url) + "\")";
+        // Re-trigger the crossfade animation on each change.
+        overviewBg.classList.remove('bg-enter');
+        void overviewBg.offsetWidth;
+        overviewBg.classList.add('bg-enter');
       }
     },
-    error: function (xhr, status, error) {
-      alert(xhr.responseText);
+    error: function (xhr) {
+      // Kiosk screen is unattended — log instead of throwing a blocking alert().
+      console.error("Queue fetch failed:", xhr.responseText);
     }
   });
-  $('#success-alert').hide();
-  $('#danger-alert').hide();
-  $('#results').show();
-}
+};
 
 var init = function () {
   initLogin();
